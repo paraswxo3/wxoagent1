@@ -3,9 +3,9 @@ from crewai import LLM
 from langchain_community.tools.tavily_search import TavilySearchResults
 import os
 
-os.environ["WATSONX_APIKEY"] = "jDAsTH4sneg9mAHK5tCjc6UULaIncdHEvRxwRm-VsOap"
-os.environ["TAVILY_API_KEY"] = "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"
-os.environ["WATSONX_PROJECT_ID"] = "273897d8-8d34-4b72-b2d0-c94de5c6b75e"
+os.environ["WATSONX_APIKEY"]
+os.environ["TAVILY_API_KEY"]
+os.environ["WATSONX_PROJECT_ID"]
 os.environ["WATSONX_URL"] = "https://us-south.ml.cloud.ibm.com"
 
 llm = LLM(
