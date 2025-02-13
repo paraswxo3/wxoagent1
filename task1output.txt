@@ -1,0 +1,14 @@
+- From https://www.linkedin.com/pulse/promising-areas-ai-research-2024-prof-ahmed-banafa-2zvlc:
+  - Topic: Promising Areas of AI Research in 2024
+  - Background: The article discusses the most promising areas for AI research in 2024, catering to diverse interests and expertise levels.
+  - Innovation Usefulness: It highlights various AI research areas that are expected to have significant impact in 2024, providing insights into future trends and advancements.
+
+- From https://www.topbots.com/ai-research-papers-2024/:
+  - Topic: Groundbreaking AI Research Papers for 2024
+  - Background: The article delves into ten groundbreaking research papers that expand the frontiers of AI across diverse domains, including large language models, multimodal processing, video generation and editing, and the creation of interactive environments.
+  - Innovation Usefulness: These studies showcase innovative approaches such as scaling down powerful models for efficient on-device use, extending multimodal reasoning across millions of tokens, and achieving unmatched fidelity in video and audio synthesis. The research is conducted by leading labs like Meta, Google DeepMind, Stability AI, Anthropic, and Microsoft.
+
+- From https://ai100.stanford.edu/gathering-strength-gathering-storms-one-hundred-year-study-artificial-intelligence-ai100-2021-1/:
+  - Topic: Gathering Strength, Gathering Storms: One Hundred Year Study on Artificial Intelligence (AI100) - 2021
+  - Background: The report discusses the impact of AI in various fields, including medicine and business operations. It highlights how AI can aid in pathology processing, mental health identification, and streamlining business operations.
+  - Innovation Usefulness: The report provides insights into how AI can assist in medical diagnosis, personalized
