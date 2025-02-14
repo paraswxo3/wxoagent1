@@ -3,7 +3,6 @@ import json
 import os
 
 
-# NOTE: you must manually set API_KEY below using information retrieved from your IBM Cloud account (https://dataplatform.cloud.ibm.com/docs/content/wsj/analyze-data/ml-authentication.html?context=wx)
 def invoke_aget(input_text: str):
   API_KEY = os.getenv("API_KEY")
   token_response = requests.post('https://iam.cloud.ibm.com/identity/token', data={"apikey":
@@ -36,6 +35,6 @@ def invoke_aget(input_text: str):
   return response
 text = "The clause will remain valid from 10th of March 2024 to 10 of Feb 2025."
 # text = context + "This Guarantee shall remain valid for a period of 24 months from the date of issuance."+instruction
-print(invoke_aget(input_text=text))
+#print(invoke_aget(input_text=text))
 # print(response_scoring.content)
 
