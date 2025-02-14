@@ -12,10 +12,10 @@ def smart_paragraph_split(text):
     return re.split(r'(?<=\.)\s*\n', text)  # Split at periods followed by newlines
 
 # def extract_paragraphs_from_pdf(pdf_path):
-# def extract_paragraphs_from_base64(pdf_base64):
-def extract_paragraphs_from_base64(pdf_bytes):    
+def extract_paragraphs_from_base64(pdf_base64):
+# def extract_paragraphs_from_base64(pdf_bytes):    
     text = ""
-    # pdf_bytes = base64.b64decode(pdf_base64)
+    pdf_bytes = base64.b64decode(pdf_base64)
     # with pdfplumber.open(pdf_path) as pdf:
     bytes = io.BytesIO()
     bytes.write(pdf_bytes)
