@@ -1,32 +1,32 @@
 from elasticsearch import Elasticsearch, helpers
 # Connect to Elasticsearch
 api_key = "SC15ai1wUUJ4cEc3QzVEYms0OWw6Vlp1Y0RKQzNSbzJsU0VBZUFyQmxRQQ=="
-cloud_id = "my_deployment:dXMtY2VudHJhbDEuZ2NwLmNsb3VkLmVzLmlvOjQ0MyQwOWI5MmM5NWEzNzI0OWQyODE4M2UzMGY3OWQxOGEwMSQwYWFjYzAyZmExNTk0ZTFiOTNiMmI3NzhkZTIyMWYyMw=="
+
 es =  Elasticsearch(
     "https://070e4c0d4e8c4aee93f3a029e9711984.us-central1.gcp.cloud.es.io:443",
     api_key=api_key
 )
 
 # List of example clauses
-clauses = [
-    {"text":"This Guarantee shall remain valid from [Start Date] to [Expiry Date].","clause":"Duration"},
-    {"text":"The Bank is liable to pay upon the Beneficiary's first written demand.","clause":"Demand"},
-    {"text":"Any claim under this Guarantee shall be made in writing before the expiry date.","clause":"Expiry"}
-]
-documents = []
+# clauses = [
+#     {"text":"This Guarantee shall remain valid from [Start Date] to [Expiry Date].","clause":"Duration"},
+#     {"text":"The Bank is liable to pay upon the Beneficiary's first written demand.","clause":"Demand"},
+#     {"text":"Any claim under this Guarantee shall be made in writing before the expiry date.","clause":"Expiry"}
+# ]
+# documents = []
 
-for index,dictionary in enumerate(clauses,start=1):
-    documents.append(
-        {
-            "_index": "bank_guarantee_clauses",
-            "_source": {"content": dictionary["text"],"clause":dictionary["clause"]}
-        }
-    )
+# for index,dictionary in enumerate(clauses,start=1):
+#     documents.append(
+#         {
+#             "_index": "bank_guarantee_clauses",
+#             "_source": {"content": dictionary["text"],"clause":dictionary["clause"]}
+#         }
+#     )
 # helpers.bulk(es, documents)
 # for i, clause in enumerate(clauses):
 #     es.index(index="bank_guarantee_clauses", id=i, body={"content": clause},timeout="120s")
 # print("Clauses Indexed Successfully!")
-def searchBG(text_to_search: str):
+def searchBG_elser(text_to_search: str):
     response = es.search(
         index="bank_guarantee_clauses",
         size=3,
@@ -46,10 +46,10 @@ def searchBG(text_to_search: str):
     else:
         return {"score":0.0,"clause_type":"","content":""}
     
-text = "This Guarantee shall remain valid from 10th Jan 2024 to 12 December 2024"
-# text = "hello there"
-response = searchBG(text)
-print(response)
+# text = "This Guarantee shall remain valid from 10th Jan 2024 to 12 December 2024"
+# # text = "hello there"
+# response = searchBG_elser(text)
+# print(response)
 # for hit in response["hits"]["hits"]:
 #         doc_id = hit["_id"]
 #         score = hit["_score"]
