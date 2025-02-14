@@ -29,10 +29,15 @@ def searchBG(text_to_search: str = Body(..., embed=True)):
    response = bg_search_agent.invoke_aget(input_text=text_to_search)
    return {"response":response}
 
+# @app.post("/upload_pdf", response_model=BGParagraphs, dependencies=[Depends(verify_api_key)])
+# async def upload_pdf(file: UploadFile = File(...)):
+#     pdf_bytes = await file.read()  # Read file content
+#     paragraphs = extract_paragraphs_from_base64(pdf_bytes)
+#     return {"paragraphs":paragraphs}
+
 @app.post("/upload_pdf", response_model=BGParagraphs, dependencies=[Depends(verify_api_key)])
-async def upload_pdf(file: UploadFile = File(...)):
-    pdf_bytes = await file.read()  # Read file content
-    paragraphs = extract_paragraphs_from_base64(pdf_bytes)
+async def upload_pdf(content: str = Body(..., embed=True)):
+    paragraphs = extract_paragraphs_from_base64(content)
     return {"paragraphs":paragraphs}
 
 if __name__ == '__main__':
