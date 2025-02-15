@@ -42,9 +42,9 @@ def searchBG_elser(text_to_search: str):
     # print(response.body)
     if len(response["hits"]["hits"]) > 0:
         dict = response["hits"]["hits"][0]
-        return {"score":dict["_score"],"clause_type":dict["_source"]["clause"],"content":dict["_source"]["content"]}
+        return {"score":dict["_score"],"clause_type":dict["_source"]["clause"],"content":dict["_source"]["content"],"input":text_to_search}
     else:
-        return {"score":0.0,"clause_type":"","content":""}
+        return {"score":0.0,"clause_type":"","content":"","input":text_to_search}
     
 # text = "This Guarantee shall remain valid from 10th Jan 2024 to 12 December 2024"
 # # text = "hello there"

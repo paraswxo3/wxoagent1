@@ -17,7 +17,11 @@ class BGParagraphs(BaseModel):
 class BGClauses(BaseModel):
     score: float
     clause_type: str
-    content: str   
+    content: str
+    input: str   
+
+class BGParaClauses(BaseModel):
+    clauses: List[BGClauses]
 
 api_key_header = APIKeyHeader(name="X-API-KEY", auto_error=True)
 
@@ -35,6 +39,15 @@ def searchBG(text_to_search: str = Body(..., embed=True)):
 #    response = bg_search_agent.invoke_aget(input_text=text_to_search)
     response = searchBG_elser(text_to_search=text_to_search)
     return response
+
+@app.post("/get_all_clauses", response_model=BGParaClauses, dependencies=[Depends(verify_api_key)])
+async def get_paragraphs(content: str = Body(..., embed=True)):
+    paragraphs = extract_paragraphs_from_base64(content)
+    response = []
+    for paragraph in paragraphs:
+        clause = searchBG_elser(text_to_search=paragraph)
+        response.append(clause)
+    return {"clauses":response}
 
 # @app.post("/upload_pdf", response_model=BGParagraphs, dependencies=[Depends(verify_api_key)])
 # async def upload_pdf(file: UploadFile = File(...)):
