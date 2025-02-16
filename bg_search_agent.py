@@ -3,7 +3,7 @@ import json
 import os
 
 
-def invoke_aget(input_text: str):
+def invoke_agent(input_text: str):
   API_KEY = os.getenv("API_KEY")
   token_response = requests.post('https://iam.cloud.ibm.com/identity/token', data={"apikey":
   API_KEY, "grant_type": 'urn:ibm:params:oauth:grant-type:apikey'})
@@ -18,14 +18,13 @@ def invoke_aget(input_text: str):
   payload_scoring = {"messages":[{"content":input_text,"role":"assistant"}]}
   # payload_scoring = {"messages":[{"content":"Fetch the invoices needed in the next 30 days","role":"assistant"}]}
 
-  response_scoring = requests.post('https://us-south.ml.cloud.ibm.com/ml/v4/deployments/2564d59e-1d23-4ca8-95b2-9ee7761f34db/ai_service?version=2021-05-01', json=payload_scoring,
+  response_scoring = requests.post('https://us-south.ml.cloud.ibm.com/ml/v4/deployments/5057c777-1440-495a-acfc-7309688d101c/ai_service?version=2021-05-01', json=payload_scoring,
     headers={'Authorization': 'Bearer ' + mltoken})
   response = "unable to identify the BG clause"
   try:
     for line in response_scoring.iter_lines():
       if line:
         line = line.decode('utf-8')
-        # print(line)
         val = json.loads(line)
         response = val["choices"][0]["message"]["content"]
   except KeyboardInterrupt:
@@ -33,8 +32,8 @@ def invoke_aget(input_text: str):
   finally:
       response_scoring.close()
   return response
-text = "The clause will remain valid from 10th of March 2024 to 10 of Feb 2025."
-# text = context + "This Guarantee shall remain valid for a period of 24 months from the date of issuance."+instruction
-#print(invoke_aget(input_text=text))
+# text = "The clause will remain valid from 10th of March 2024 to 10 of Feb 2025."
+# text = "Find the clause in this text: This Guarantee shall remain valid for a period of 24 months from the date of issuance."
+# print(invoke_agent(input_text=text))
 # print(response_scoring.content)
 
